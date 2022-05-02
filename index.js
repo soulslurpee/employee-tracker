@@ -70,6 +70,39 @@ function mainMenu() {
   })
 }
 
+function viewAllEmployees() {
+  queries
+    .getAllEmp()
+    .then(( [rows] ) => {
+      console.table(rows);
+    })
+    .then(() => {
+      mainMenu();
+    });
+}
+
+function viewAllRoles() {
+  queries
+    .getAllRoles()
+    .then(( [rows] ) => {
+      console.table(rows);
+    })
+    .then(() => {
+      mainMenu();
+    });
+}
+
+function viewAllDepartments() {
+  queries
+    .getAllDep()
+    .then(( [rows] ) => {
+      console.table(rows);
+    })
+    .then(() => {
+      mainMenu();
+    });
+}
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
