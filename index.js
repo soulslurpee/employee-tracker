@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 const db = require('./db/connection.js');
+const queries = require('./db/queries.js')
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -68,17 +69,6 @@ function mainMenu() {
       }
   })
 }
-
-function viewAllEmployees() {
-  connection.query("SELECT employee.id, employee.first_name, employee.last_name, role.title AS role FROM employee LEFT JOIN role ON employee.role_id = role.id", 
-  (err, res) => {
-    if (err) 
-    throw err
-    console.table(res)
-    startPrompt()
-})
-}
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
