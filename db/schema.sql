@@ -1,8 +1,12 @@
-DROP DATABASE IF EXISTS employee_trackerDB;
+DROP DATABASE IF EXISTS employee_tracker;
 
-CREATE DATABASE employee_trackerDB;
+CREATE DATABASE employee_tracker;
 
-USE employee_trackerDB;
+USE employee_tracker;
+
+DROP TABLE IF EXISTS department;
+DROP TABLE IF EXISTS role;
+DROP TABLE IF EXISTS employee;
 
 CREATE TABLE department (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -25,5 +29,4 @@ CREATE TABLE employee (
   role_id INT,
   FOREIGN KEY (role_id) REFERENCES role(id),
   FOREIGN KEY (manager_id) REFERENCES employee(id)
-
 );

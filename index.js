@@ -1,5 +1,4 @@
 const express = require('express');
-const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const consoleTable = require('console.table');
 
@@ -17,7 +16,7 @@ db.connect((err) => {
     console.log(err);
     throw err;
   }
-  console.log('<=Connection to Employee Database=>');
+  console.log('<=Connected to Employee Database=>');
   mainMenu();
 });
 
@@ -31,9 +30,9 @@ function mainMenu() {
             "[View All Employees]", 
             "[Update Employee]",
             "[Add Employee]",
-            "[View All Employees By Roles]",
+            "[View All Employees By Role]",
             "[Add Role]",
-            "[View all Employees By Deparments]", 
+            "[View all Employees By Deparment]", 
             "[Add Department]"
           ]
   }
@@ -51,7 +50,7 @@ function mainMenu() {
           addEmployee();
         break;
   
-        case "[View All Employee's By Roles]":
+        case "[View All Employee's By Role]":
           viewAllRoles();
         break;
 
@@ -59,7 +58,7 @@ function mainMenu() {
           addRole();
         break;
 
-        case "[View all Emplyees By Deparments]":
+        case "[View all Emplyees By Deparment]":
           viewAllDepartments();
         break;
 
@@ -71,8 +70,7 @@ function mainMenu() {
 }
 
 function viewAllEmployees() {
-  queries
-    .getAllEmp()
+  queries.getAllEmp()
     .then(( [rows] ) => {
       console.table(rows);
     })
@@ -82,8 +80,7 @@ function viewAllEmployees() {
 }
 
 function viewAllRoles() {
-  queries
-    .getAllRoles()
+  queries.getAllRoles()
     .then(( [rows] ) => {
       console.table(rows);
     })
@@ -93,8 +90,7 @@ function viewAllRoles() {
 }
 
 function viewAllDepartments() {
-  queries
-    .getAllDep()
+  queries.getAllDep()
     .then(( [rows] ) => {
       console.table(rows);
     })
