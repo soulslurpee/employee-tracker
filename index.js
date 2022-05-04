@@ -110,7 +110,7 @@ function addDep() {
     }
   ])
   .then((result) => {
-    departmentName = result;
+    departmentName = result.addDep;
     console.log(departmentName);
     queries.insertDep(departmentName)
     .then(() => {
@@ -118,11 +118,7 @@ function addDep() {
     })
   })
   .catch((err) => {
-    if (err) {
-      throw err;
-    } else {
-      viewAllDep();
-    }
+    if (err) throw err;
   })
 }
 
