@@ -26,8 +26,8 @@ VALUES
   ('Johnson', 'Scott', 1, NULL),
   ('Richards', 'Dave', 2, 1),
   ('Gonzales', 'Rose', 3, NULL),
-  ('Thompson', 'Charles', 4, 2),
+  ('Thompson', 'Charles', 4, 3),
   ('Leon', 'Mary', 5, NULL),
-  ('Gerbert', 'Linda', 6, 3),
+  ('Gerbert', 'Linda', 6, 5),
   ('Holmes', 'Sherlock', 7, NULL),
-  ('White', 'Betty', 8, 4);
+  ('White', 'Betty', 8, 7);

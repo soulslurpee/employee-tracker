@@ -1,6 +1,8 @@
 const express = require('express');
 const inquirer = require('inquirer');
+const { prompt } = require("inquirer");
 const consoleTable = require('console.table');
+require("console.table");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -39,7 +41,7 @@ function mainMenu() {
 ]).then((result) => {
       switch (result.choice) {
         case "[View All Employees]":
-          viewAllEmployees();
+          viewAllEmp();
         break;
 
         case "[Update Employee]":
@@ -47,10 +49,10 @@ function mainMenu() {
         break;
 
         case "[Add Employee]":
-          addEmployee();
+          addEmp();
         break;
   
-        case "[View All Employee's By Role]":
+        case "[View All Employees By Role]":
           viewAllRoles();
         break;
 
@@ -58,18 +60,18 @@ function mainMenu() {
           addRole();
         break;
 
-        case "[View all Emplyees By Deparment]":
-          viewAllDepartments();
+        case "[View all Employees By Deparment]":
+          viewAllDep();
         break;
 
         case "[Add Department]":
-          addDepartment();
+          addDep();
         break;
       }
   })
 }
 
-function viewAllEmployees() {
+function viewAllEmp() {
   queries.getAllEmp()
     .then(( [rows] ) => {
       console.table(rows);
@@ -89,7 +91,7 @@ function viewAllRoles() {
     });
 }
 
-function viewAllDepartments() {
+function viewAllDep() {
   queries.getAllDep()
     .then(( [rows] ) => {
       console.table(rows);
@@ -97,6 +99,31 @@ function viewAllDepartments() {
     .then(() => {
       mainMenu();
     });
+}
+
+function addDep() {
+  inquirer.prompt([
+    {
+      type:"string",
+      name:"addDep",
+      message:"Enter new department"
+    }
+  ])
+  .then((result) => {
+    departmentName = result;
+    console.log(departmentName);
+    queries.insertDep(departmentName)
+    .then(() => {
+    console.log(departmentName);
+    })
+  })
+  .catch((err) => {
+    if (err) {
+      throw err;
+    } else {
+      viewAllDep();
+    }
+  })
 }
 
 app.listen(PORT, () => {
